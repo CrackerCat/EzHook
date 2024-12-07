@@ -7,7 +7,7 @@ To enable EzHook, add the Gradle plugin in your top-level project configuration:
 // Root-level build.gradle.kts
 buildscript {
     dependencies {
-        classpath("io.github.xdmrwu:ez-hook-gradle-plugin:1.0.0")
+        classpath("io.github.xdmrwu:ez-hook-gradle-plugin:0.0.2")
     }
 }
 // Apply the EzHook plugin in your top-level module
@@ -20,7 +20,7 @@ Then add the EzHook runtime library to any module where you want to use its feat
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("io.github.xdmrwu:ez-hook-library:1.0.0")
+            implementation("io.github.xdmrwu:ez-hook-library:0.0.2")
         }
     }
 }
