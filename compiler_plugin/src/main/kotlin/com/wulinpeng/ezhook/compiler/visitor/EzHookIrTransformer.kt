@@ -35,13 +35,14 @@ class EzHookIrTransformer(val collectInfos: List<EzHookInfo>, val pluginContext:
     companion object {
         private const val LAST_PARAM_NAME = "ez_hook_origin"
         private const val NEW_FUNCTION_SUFFIX = "_ez_hook"
+        private const val INLINE_FUNCTION_SUFFIX = "_ez_hook_inline"
     }
 
     override fun visitFunctionNew(function: IrFunction): IrStatement {
         val hookInfo = findHookInfo(function) ?: return super.visitFunctionNew(function)
         // 0. if hook function is set to inline, copy the function to the target function's parent
         val hookFunction = if (hookInfo.inline) {
-            hookInfo.function.copyFunctionToParent(function.name.asString(), function.parent)
+            hookInfo.function.copyFunctionToParent("${hookInfo.function.name.asString()}_$INLINE_FUNCTION_SUFFIX", function.parent)
         } else {
             hookInfo.function
         }
