@@ -36,6 +36,7 @@ To use EzHook, create a hook method and annotate it with `@EzHook`, specifying t
 
 **Example:**
 ```kotlin
+@HiddenFromObjC
 @EzHook("kotlin.time.Duration.toInt")
 fun toInt(unit: DurationUnit): Int {
     println("Hook to int")
@@ -48,6 +49,7 @@ In this example, the `toInt` method of the Duration class will be replaced by th
 - The `@EzHook` annotation takes the fully qualified name (FQN) of the target method. It also supports top-level functions.
 - The name of the hook method can be arbitrary, but the number, types of parameters, and the return type must match the target method.
 - Hook methods must be top-level functions.
+- If the target platform includes iOS, the `@HiddenFromObjC` annotation needs to be added.
 ### Calling the Original Method
 EzHook allows you to invoke the original method and modify its parameters within the hook. 
 Here’s how to do it:
